@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
          <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Collapsable</h3>
@@ -14,7 +15,7 @@
           The body of the box
         </div><!-- /.box-body -->
       </div><!-- /.box -->
-
+        </div>
     </div>
     <div class="row">
 
