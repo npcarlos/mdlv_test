@@ -11,6 +11,9 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Person;
+
+
 class PackagerController extends AppBaseController
 {
     /** @var  PackagerRepository */
@@ -43,7 +46,9 @@ class PackagerController extends AppBaseController
      */
     public function create()
     {
-        return view('packagers.create');
+		$people = Person::all()->pluck('labelSelect', 'id');
+
+		return view('packagers.create', compact('people'));
     }
 
     /**
@@ -93,6 +98,8 @@ class PackagerController extends AppBaseController
      */
     public function edit($id)
     {
+		$people = Person::all()->pluck('labelSelect', 'id');
+
         $packager = $this->packagerRepository->findWithoutFail($id);
 
         if (empty($packager)) {
@@ -101,7 +108,7 @@ class PackagerController extends AppBaseController
             return redirect(route('packagers.index'));
         }
 
-        return view('packagers.edit')->with('packager', $packager);
+		return view('packagers.edit', compact('packager', 'people'));
     }
 
     /**

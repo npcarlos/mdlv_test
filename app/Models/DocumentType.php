@@ -48,5 +48,39 @@ class DocumentType extends Model
         'name' => 'required'
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->longname . " (" . $this->name . ")";
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function providers()
+	{
+		return $this->hasMany(\App\Models\Provider::class);
+	}
+
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function customers()
+	{
+		return $this->hasMany(\App\Models\Customer::class);
+	}
+
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function people()
+	{
+		return $this->hasMany(\App\Models\Person::class);
+	}
+
+
     
 }

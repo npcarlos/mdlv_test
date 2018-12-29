@@ -11,6 +11,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Supply;
+use App\Models\PrelotOrder;
+
+
 class DamagedSupplyController extends AppBaseController
 {
     /** @var  DamagedSupplyRepository */
@@ -43,7 +47,10 @@ class DamagedSupplyController extends AppBaseController
      */
     public function create()
     {
-        return view('damaged_supplies.create');
+		$supplies = Supply::all()->pluck('labelSelect', 'id');
+		$prelotOrders = PrelotOrder::all()->pluck('labelSelect', 'id');
+
+		return view('damaged_supplies.create', compact('supplies', 'prelotOrders'));
     }
 
     /**
@@ -93,6 +100,9 @@ class DamagedSupplyController extends AppBaseController
      */
     public function edit($id)
     {
+		$supplies = Supply::all()->pluck('labelSelect', 'id');
+		$prelotOrders = PrelotOrder::all()->pluck('labelSelect', 'id');
+
         $damagedSupply = $this->damagedSupplyRepository->findWithoutFail($id);
 
         if (empty($damagedSupply)) {
@@ -101,7 +111,7 @@ class DamagedSupplyController extends AppBaseController
             return redirect(route('damagedSupplies.index'));
         }
 
-        return view('damaged_supplies.edit')->with('damagedSupply', $damagedSupply);
+		return view('damaged_supplies.edit', compact('damagedSupply', 'supplies', 'prelotOrders'));
     }
 
     /**

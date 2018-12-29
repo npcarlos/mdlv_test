@@ -1,13 +1,13 @@
 <!-- Presentation Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('presentation_id', 'Presentation Id:') !!}
-    {!! Form::select('presentation_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('presentation_id', $presentations, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Packager Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('packager_id', 'Packager Id:') !!}
-    {!! Form::select('packager_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('packager_id', $packagers, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Quantity Field -->

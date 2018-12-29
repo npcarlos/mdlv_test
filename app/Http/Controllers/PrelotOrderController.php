@@ -11,6 +11,11 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Presentation;
+use App\Models\Packager;
+use App\Models\PrelotStatus;
+
+
 class PrelotOrderController extends AppBaseController
 {
     /** @var  PrelotOrderRepository */
@@ -43,7 +48,11 @@ class PrelotOrderController extends AppBaseController
      */
     public function create()
     {
-        return view('prelot_orders.create');
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$packagers = Packager::all()->pluck('labelSelect', 'id');
+		$prelotStatuses = PrelotStatus::all()->pluck('labelSelect', 'id');
+
+		return view('prelot_orders.create', compact('presentations', 'packagers', 'prelotStatuses'));
     }
 
     /**
@@ -93,6 +102,10 @@ class PrelotOrderController extends AppBaseController
      */
     public function edit($id)
     {
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$packagers = Packager::all()->pluck('labelSelect', 'id');
+		$prelotStatuses = PrelotStatus::all()->pluck('labelSelect', 'id');
+
         $prelotOrder = $this->prelotOrderRepository->findWithoutFail($id);
 
         if (empty($prelotOrder)) {
@@ -101,7 +114,7 @@ class PrelotOrderController extends AppBaseController
             return redirect(route('prelotOrders.index'));
         }
 
-        return view('prelot_orders.edit')->with('prelotOrder', $prelotOrder);
+		return view('prelot_orders.edit', compact('prelotOrder', 'presentations', 'packagers', 'prelotStatuses'));
     }
 
     /**

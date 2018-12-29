@@ -11,6 +11,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Provider;
+use App\Models\Administrator;
+
+
 class SupplyOrderController extends AppBaseController
 {
     /** @var  SupplyOrderRepository */
@@ -43,7 +47,10 @@ class SupplyOrderController extends AppBaseController
      */
     public function create()
     {
-        return view('supply_orders.create');
+		$providers = Provider::all()->pluck('labelSelect', 'id');
+		$administrators = Administrator::all()->pluck('labelSelect', 'id');
+
+		return view('supply_orders.create', compact('providers', 'administrators'));
     }
 
     /**
@@ -93,6 +100,9 @@ class SupplyOrderController extends AppBaseController
      */
     public function edit($id)
     {
+		$providers = Provider::all()->pluck('labelSelect', 'id');
+		$administrators = Administrator::all()->pluck('labelSelect', 'id');
+
         $supplyOrder = $this->supplyOrderRepository->findWithoutFail($id);
 
         if (empty($supplyOrder)) {
@@ -101,7 +111,7 @@ class SupplyOrderController extends AppBaseController
             return redirect(route('supplyOrders.index'));
         }
 
-        return view('supply_orders.edit')->with('supplyOrder', $supplyOrder);
+		return view('supply_orders.edit', compact('supplyOrder', 'providers', 'administrators'));
     }
 
     /**

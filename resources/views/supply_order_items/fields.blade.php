@@ -1,13 +1,13 @@
 <!-- Supply Order Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('supply_order_id', 'Supply Order Id:') !!}
-    {!! Form::select('supply_order_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('supply_order_id', $supplyOrders, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Supply Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('supply_id', 'Supply Id:') !!}
-    {!! Form::select('supply_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('supply_id', $supplies, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Quantity Field -->

@@ -79,6 +79,22 @@ class Order extends Model
         'comments' => 'nullable'
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->name;
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function orderItems()
+	{
+		return $this->hasMany(\App\Models\OrderItem::class);
+	}
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

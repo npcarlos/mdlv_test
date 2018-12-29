@@ -52,6 +52,22 @@ class SupplyOrder extends Model
         
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->name;
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function supplyOrderItems()
+	{
+		return $this->hasMany(\App\Models\SupplyOrderItem::class);
+	}
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

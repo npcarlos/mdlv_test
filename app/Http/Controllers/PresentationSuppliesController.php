@@ -11,6 +11,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Presentation;
+use App\Models\Supply;
+
+
 class PresentationSuppliesController extends AppBaseController
 {
     /** @var  PresentationSuppliesRepository */
@@ -43,7 +47,10 @@ class PresentationSuppliesController extends AppBaseController
      */
     public function create()
     {
-        return view('presentation_supplies.create');
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$supplies = Supply::all()->pluck('labelSelect', 'id');
+
+		return view('presentation_supplies.create', compact('presentations', 'supplies'));
     }
 
     /**
@@ -93,6 +100,9 @@ class PresentationSuppliesController extends AppBaseController
      */
     public function edit($id)
     {
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$supplies = Supply::all()->pluck('labelSelect', 'id');
+
         $presentationSupplies = $this->presentationSuppliesRepository->findWithoutFail($id);
 
         if (empty($presentationSupplies)) {
@@ -101,7 +111,7 @@ class PresentationSuppliesController extends AppBaseController
             return redirect(route('presentationSupplies.index'));
         }
 
-        return view('presentation_supplies.edit')->with('presentationSupplies', $presentationSupplies);
+		return view('presentation_supplies.edit', compact('presentationSupplies', 'presentations', 'supplies'));
     }
 
     /**

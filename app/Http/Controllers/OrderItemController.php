@@ -11,6 +11,11 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Order;
+use App\Models\Presentation;
+use App\Models\Discount;
+
+
 class OrderItemController extends AppBaseController
 {
     /** @var  OrderItemRepository */
@@ -43,7 +48,11 @@ class OrderItemController extends AppBaseController
      */
     public function create()
     {
-        return view('order_items.create');
+		$orders = Order::all()->pluck('labelSelect', 'id');
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$discounts = Discount::all()->pluck('labelSelect', 'id');
+
+		return view('order_items.create', compact('orders', 'presentations', 'discounts'));
     }
 
     /**
@@ -93,6 +102,10 @@ class OrderItemController extends AppBaseController
      */
     public function edit($id)
     {
+		$orders = Order::all()->pluck('labelSelect', 'id');
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$discounts = Discount::all()->pluck('labelSelect', 'id');
+
         $orderItem = $this->orderItemRepository->findWithoutFail($id);
 
         if (empty($orderItem)) {
@@ -101,7 +114,7 @@ class OrderItemController extends AppBaseController
             return redirect(route('orderItems.index'));
         }
 
-        return view('order_items.edit')->with('orderItem', $orderItem);
+		return view('order_items.edit', compact('orderItem', 'orders', 'presentations', 'discounts'));
     }
 
     /**

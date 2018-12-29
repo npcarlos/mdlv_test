@@ -71,6 +71,22 @@ class PrelotOrder extends Model
         'packaged_date' => 'nullable'
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->name;
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function damagedSupplies()
+	{
+		return $this->hasMany(\App\Models\DamagedSupply::class);
+	}
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

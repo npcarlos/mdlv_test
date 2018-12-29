@@ -11,6 +11,9 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Customer;
+
+
 class DeliveryAddressController extends AppBaseController
 {
     /** @var  DeliveryAddressRepository */
@@ -43,7 +46,9 @@ class DeliveryAddressController extends AppBaseController
      */
     public function create()
     {
-        return view('delivery_addresses.create');
+		$customers = Customer::all()->pluck('labelSelect', 'id');
+
+		return view('delivery_addresses.create', compact('customers'));
     }
 
     /**
@@ -93,6 +98,8 @@ class DeliveryAddressController extends AppBaseController
      */
     public function edit($id)
     {
+		$customers = Customer::all()->pluck('labelSelect', 'id');
+
         $deliveryAddress = $this->deliveryAddressRepository->findWithoutFail($id);
 
         if (empty($deliveryAddress)) {
@@ -101,7 +108,7 @@ class DeliveryAddressController extends AppBaseController
             return redirect(route('deliveryAddresses.index'));
         }
 
-        return view('delivery_addresses.edit')->with('deliveryAddress', $deliveryAddress);
+		return view('delivery_addresses.edit', compact('deliveryAddress', 'customers'));
     }
 
     /**

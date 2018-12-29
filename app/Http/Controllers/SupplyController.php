@@ -11,6 +11,11 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\SupplyCategory;
+use App\Models\Provider;
+use App\Models\MeasurementUnit;
+
+
 class SupplyController extends AppBaseController
 {
     /** @var  SupplyRepository */
@@ -43,7 +48,11 @@ class SupplyController extends AppBaseController
      */
     public function create()
     {
-        return view('supplies.create');
+		$supplyCategories = SupplyCategory::all()->pluck('labelSelect', 'id');
+		$providers = Provider::all()->pluck('labelSelect', 'id');
+		$measurementUnits = MeasurementUnit::all()->pluck('labelSelect', 'id');
+
+		return view('supplies.create', compact('supplyCategories', 'providers', 'measurementUnits'));
     }
 
     /**
@@ -93,6 +102,10 @@ class SupplyController extends AppBaseController
      */
     public function edit($id)
     {
+		$supplyCategories = SupplyCategory::all()->pluck('labelSelect', 'id');
+		$providers = Provider::all()->pluck('labelSelect', 'id');
+		$measurementUnits = MeasurementUnit::all()->pluck('labelSelect', 'id');
+
         $supply = $this->supplyRepository->findWithoutFail($id);
 
         if (empty($supply)) {
@@ -101,7 +114,7 @@ class SupplyController extends AppBaseController
             return redirect(route('supplies.index'));
         }
 
-        return view('supplies.edit')->with('supply', $supply);
+		return view('supplies.edit', compact('supply', 'supplyCategories', 'providers', 'measurementUnits'));
     }
 
     /**

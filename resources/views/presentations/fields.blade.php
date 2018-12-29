@@ -1,7 +1,7 @@
 <!-- Product Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('product_id', 'Product Id:') !!}
-    {!! Form::select('product_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('product_id', $products, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Short Name Field -->
@@ -25,7 +25,7 @@
 <!-- Measurement Unit Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('measurement_unit_id', 'Measurement Unit Id:') !!}
-    {!! Form::select('measurement_unit_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('measurement_unit_id', $measurementUnits, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Wholesale Price Field -->

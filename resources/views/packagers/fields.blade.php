@@ -1,7 +1,7 @@
 <!-- Person Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('person_id', 'Person Id:') !!}
-    {!! Form::select('person_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('person_id', $people, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

@@ -44,5 +44,21 @@ class PrelotStatus extends Model
         'name' => 'required'
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->name;
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function prelotOrders()
+	{
+		return $this->hasMany(\App\Models\PrelotOrder::class);
+	}
+
+
     
 }

@@ -7,7 +7,7 @@
 <!-- Document Type Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('document_type_id', 'Document Type Id:') !!}
-    {!! Form::select('document_type_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('document_type_id', $documentTypes, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Document Number Field -->

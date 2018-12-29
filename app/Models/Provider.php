@@ -91,6 +91,31 @@ class Provider extends Model
         'image' => 'nullable'
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->name;
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function supplies()
+	{
+		return $this->hasMany(\App\Models\Supply::class);
+	}
+
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function supplyOrders()
+	{
+		return $this->hasMany(\App\Models\SupplyOrder::class);
+	}
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

@@ -11,6 +11,9 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Person;
+
+
 class DelivererController extends AppBaseController
 {
     /** @var  DelivererRepository */
@@ -43,7 +46,9 @@ class DelivererController extends AppBaseController
      */
     public function create()
     {
-        return view('deliverers.create');
+		$people = Person::all()->pluck('labelSelect', 'id');
+
+		return view('deliverers.create', compact('people'));
     }
 
     /**
@@ -93,6 +98,8 @@ class DelivererController extends AppBaseController
      */
     public function edit($id)
     {
+		$people = Person::all()->pluck('labelSelect', 'id');
+
         $deliverer = $this->delivererRepository->findWithoutFail($id);
 
         if (empty($deliverer)) {
@@ -101,7 +108,7 @@ class DelivererController extends AppBaseController
             return redirect(route('deliverers.index'));
         }
 
-        return view('deliverers.edit')->with('deliverer', $deliverer);
+		return view('deliverers.edit', compact('deliverer', 'people'));
     }
 
     /**

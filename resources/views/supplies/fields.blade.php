@@ -1,7 +1,7 @@
 <!-- Supply Category Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('supply_category_id', 'Supply Category Id:') !!}
-    {!! Form::select('supply_category_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('supply_category_id', $supplyCategories, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Name Field -->
@@ -13,7 +13,7 @@
 <!-- Provider Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('provider_id', 'Provider Id:') !!}
-    {!! Form::select('provider_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('provider_id', $providers, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Measurement Quantity Field -->
@@ -25,7 +25,7 @@
 <!-- Measurement Unit Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('measurement_unit_id', 'Measurement Unit Id:') !!}
-    {!! Form::select('measurement_unit_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('measurement_unit_id', $measurementUnits, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Minimum Stock Quantity Field -->

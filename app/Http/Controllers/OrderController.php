@@ -11,6 +11,14 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Customer;
+use App\Models\Seller;
+use App\Models\PaymentStatus;
+use App\Models\DeliveryStatus;
+use App\Models\Deliverer;
+use App\Models\DeliveryAddress;
+
+
 class OrderController extends AppBaseController
 {
     /** @var  OrderRepository */
@@ -43,7 +51,14 @@ class OrderController extends AppBaseController
      */
     public function create()
     {
-        return view('orders.create');
+		$customers = Customer::all()->pluck('labelSelect', 'id');
+		$sellers = Seller::all()->pluck('labelSelect', 'id');
+		$paymentStatuses = PaymentStatus::all()->pluck('labelSelect', 'id');
+		$deliveryStatuses = DeliveryStatus::all()->pluck('labelSelect', 'id');
+		$deliverers = Deliverer::all()->pluck('labelSelect', 'id');
+		$deliveryAddresses = DeliveryAddress::all()->pluck('labelSelect', 'id');
+
+		return view('orders.create', compact('customers', 'sellers', 'paymentStatuses', 'deliveryStatuses', 'deliverers', 'deliveryAddresses'));
     }
 
     /**
@@ -93,6 +108,13 @@ class OrderController extends AppBaseController
      */
     public function edit($id)
     {
+		$customers = Customer::all()->pluck('labelSelect', 'id');
+		$sellers = Seller::all()->pluck('labelSelect', 'id');
+		$paymentStatuses = PaymentStatus::all()->pluck('labelSelect', 'id');
+		$deliveryStatuses = DeliveryStatus::all()->pluck('labelSelect', 'id');
+		$deliverers = Deliverer::all()->pluck('labelSelect', 'id');
+		$deliveryAddresses = DeliveryAddress::all()->pluck('labelSelect', 'id');
+
         $order = $this->orderRepository->findWithoutFail($id);
 
         if (empty($order)) {
@@ -101,7 +123,7 @@ class OrderController extends AppBaseController
             return redirect(route('orders.index'));
         }
 
-        return view('orders.edit')->with('order', $order);
+		return view('orders.edit', compact('order', 'customers', 'sellers', 'paymentStatuses', 'deliveryStatuses', 'deliverers', 'deliveryAddresses'));
     }
 
     /**

@@ -94,6 +94,49 @@ class Person extends Model
         'nationality' => 'required'
     ];
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getLabelSelectAttribute() {
+	    return $this->name;
+	}
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function packagers()
+	{
+		return $this->hasMany(\App\Models\Packager::class);
+	}
+
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function sellers()
+	{
+		return $this->hasMany(\App\Models\Seller::class);
+	}
+
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function administrators()
+	{
+		return $this->hasMany(\App\Models\Administrator::class);
+	}
+
+
+	/**
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	**/
+	public function deliverers()
+	{
+		return $this->hasMany(\App\Models\Deliverer::class);
+	}
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

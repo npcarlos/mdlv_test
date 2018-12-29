@@ -11,6 +11,9 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\DocumentType;
+
+
 class CustomerController extends AppBaseController
 {
     /** @var  CustomerRepository */
@@ -43,7 +46,9 @@ class CustomerController extends AppBaseController
      */
     public function create()
     {
-        return view('customers.create');
+		$documentTypes = DocumentType::all()->pluck('labelSelect', 'id');
+
+		return view('customers.create', compact('documentTypes'));
     }
 
     /**
@@ -93,6 +98,8 @@ class CustomerController extends AppBaseController
      */
     public function edit($id)
     {
+		$documentTypes = DocumentType::all()->pluck('labelSelect', 'id');
+
         $customer = $this->customerRepository->findWithoutFail($id);
 
         if (empty($customer)) {
@@ -101,7 +108,7 @@ class CustomerController extends AppBaseController
             return redirect(route('customers.index'));
         }
 
-        return view('customers.edit')->with('customer', $customer);
+		return view('customers.edit', compact('customer', 'documentTypes'));
     }
 
     /**

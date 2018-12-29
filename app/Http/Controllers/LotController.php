@@ -11,6 +11,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Presentation;
+use App\Models\Packager;
+
+
 class LotController extends AppBaseController
 {
     /** @var  LotRepository */
@@ -43,7 +47,10 @@ class LotController extends AppBaseController
      */
     public function create()
     {
-        return view('lots.create');
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$packagers = Packager::all()->pluck('labelSelect', 'id');
+
+		return view('lots.create', compact('presentations', 'packagers'));
     }
 
     /**
@@ -93,6 +100,9 @@ class LotController extends AppBaseController
      */
     public function edit($id)
     {
+		$presentations = Presentation::all()->pluck('labelSelect', 'id');
+		$packagers = Packager::all()->pluck('labelSelect', 'id');
+
         $lot = $this->lotRepository->findWithoutFail($id);
 
         if (empty($lot)) {
@@ -101,7 +111,7 @@ class LotController extends AppBaseController
             return redirect(route('lots.index'));
         }
 
-        return view('lots.edit')->with('lot', $lot);
+		return view('lots.edit', compact('lot', 'presentations', 'packagers'));
     }
 
     /**

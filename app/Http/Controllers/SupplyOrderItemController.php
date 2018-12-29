@@ -11,6 +11,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\SupplyOrder;
+use App\Models\Supply;
+
+
 class SupplyOrderItemController extends AppBaseController
 {
     /** @var  SupplyOrderItemRepository */
@@ -43,7 +47,10 @@ class SupplyOrderItemController extends AppBaseController
      */
     public function create()
     {
-        return view('supply_order_items.create');
+		$supplyOrders = SupplyOrder::all()->pluck('labelSelect', 'id');
+		$supplies = Supply::all()->pluck('labelSelect', 'id');
+
+		return view('supply_order_items.create', compact('supplyOrders', 'supplies'));
     }
 
     /**
@@ -93,6 +100,9 @@ class SupplyOrderItemController extends AppBaseController
      */
     public function edit($id)
     {
+		$supplyOrders = SupplyOrder::all()->pluck('labelSelect', 'id');
+		$supplies = Supply::all()->pluck('labelSelect', 'id');
+
         $supplyOrderItem = $this->supplyOrderItemRepository->findWithoutFail($id);
 
         if (empty($supplyOrderItem)) {
@@ -101,7 +111,7 @@ class SupplyOrderItemController extends AppBaseController
             return redirect(route('supplyOrderItems.index'));
         }
 
-        return view('supply_order_items.edit')->with('supplyOrderItem', $supplyOrderItem);
+		return view('supply_order_items.edit', compact('supplyOrderItem', 'supplyOrders', 'supplies'));
     }
 
     /**

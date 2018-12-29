@@ -1,19 +1,19 @@
 <!-- Customer Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('customer_id', 'Customer Id:') !!}
-    {!! Form::select('customer_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('customer_id', $customers, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Seller Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('seller_id', 'Seller Id:') !!}
-    {!! Form::select('seller_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('seller_id', $sellers, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Deliverer Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('deliverer_id', 'Deliverer Id:') !!}
-    {!! Form::select('deliverer_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('deliverer_id', $deliverers, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Planned Delivery Date Field -->
@@ -31,7 +31,7 @@
 <!-- Delivery Address Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('delivery_address_id', 'Delivery Address Id:') !!}
-    {!! Form::select('delivery_address_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('delivery_address_id', $deliveryAddresses, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Comments Field -->

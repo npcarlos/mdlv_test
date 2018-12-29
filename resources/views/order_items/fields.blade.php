@@ -1,13 +1,13 @@
 <!-- Order Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('order_id', 'Order Id:') !!}
-    {!! Form::select('order_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('order_id', $orders, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Presentation Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('presentation_id', 'Presentation Id:') !!}
-    {!! Form::select('presentation_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('presentation_id', $presentations, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Quantity Field -->
@@ -19,7 +19,7 @@
 <!-- Discount Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('discount_id', 'Discount Id:') !!}
-    {!! Form::select('discount_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('discount_id', $discounts, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

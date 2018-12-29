@@ -1,13 +1,13 @@
 <!-- Provider Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('provider_id', 'Provider Id:') !!}
-    {!! Form::select('provider_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('provider_id', $providers, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Administrator Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('administrator_id', 'Administrator Id:') !!}
-    {!! Form::select('administrator_id', ], null, ['class' => 'form-control']) !!}
+		{!! Form::select('administrator_id', $administrators, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Comments Field -->

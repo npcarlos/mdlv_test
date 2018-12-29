@@ -11,6 +11,9 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Person;
+
+
 class AdministratorController extends AppBaseController
 {
     /** @var  AdministratorRepository */
@@ -43,7 +46,9 @@ class AdministratorController extends AppBaseController
      */
     public function create()
     {
-        return view('administrators.create');
+		$people = Person::all()->pluck('labelSelect', 'id');
+
+		return view('administrators.create', compact('people'));
     }
 
     /**
@@ -93,6 +98,8 @@ class AdministratorController extends AppBaseController
      */
     public function edit($id)
     {
+		$people = Person::all()->pluck('labelSelect', 'id');
+
         $administrator = $this->administratorRepository->findWithoutFail($id);
 
         if (empty($administrator)) {
@@ -101,7 +108,7 @@ class AdministratorController extends AppBaseController
             return redirect(route('administrators.index'));
         }
 
-        return view('administrators.edit')->with('administrator', $administrator);
+		return view('administrators.edit', compact('administrator', 'people'));
     }
 
     /**

@@ -202,7 +202,7 @@ function modificarControlladoresWeb($modelo, $relaciones)
                         foreach($relaciones as $relacion)
                         {
                             $variable = lcfirst(Pluralizer::plural($relacion));
-                            $contenido .= imprimirLinea("$".$variable." = ".$relacion."::pluck('labelSelect', 'id');", 2);
+                            $contenido .= imprimirLinea("$".$variable." = ".$relacion."::all()->pluck('labelSelect', 'id');", 2);
                         }
                         $contenido .="\n";
                         $yaEscribioVariablesConsulta = true;        

@@ -11,6 +11,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Product;
+use App\Models\MeasurementUnit;
+
+
 class PresentationController extends AppBaseController
 {
     /** @var  PresentationRepository */
@@ -43,7 +47,10 @@ class PresentationController extends AppBaseController
      */
     public function create()
     {
-        return view('presentations.create');
+		$products = Product::all()->pluck('labelSelect', 'id');
+		$measurementUnits = MeasurementUnit::all()->pluck('labelSelect', 'id');
+
+		return view('presentations.create', compact('products', 'measurementUnits'));
     }
 
     /**
@@ -93,6 +100,9 @@ class PresentationController extends AppBaseController
      */
     public function edit($id)
     {
+		$products = Product::all()->pluck('labelSelect', 'id');
+		$measurementUnits = MeasurementUnit::all()->pluck('labelSelect', 'id');
+
         $presentation = $this->presentationRepository->findWithoutFail($id);
 
         if (empty($presentation)) {
@@ -101,7 +111,7 @@ class PresentationController extends AppBaseController
             return redirect(route('presentations.index'));
         }
 
-        return view('presentations.edit')->with('presentation', $presentation);
+		return view('presentations.edit', compact('presentation', 'products', 'measurementUnits'));
     }
 
     /**
