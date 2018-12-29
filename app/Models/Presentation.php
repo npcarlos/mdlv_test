@@ -86,9 +86,15 @@ class Presentation extends Model
 	* @return A string which contains the text to be used in the select
 	**/
 	public function getLabelSelectAttribute() {
-	    return $this->name;
+	    return "[" . $this->product->name . "] " . $this->formal_name . " (" . $this->measurement . ")";
 	}
 
+	/**
+	* @return A string which contains the text to be used in the select
+	**/
+	public function getMeasurementAttribute() {
+	    return $this->measurement_quantity . " " . $this->measurementUnit->abreviation ;
+	}
 	/**
 	* @return \Illuminate\Database\Eloquent\Relations\HasMany
 	**/

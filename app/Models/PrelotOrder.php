@@ -65,8 +65,7 @@ class PrelotOrder extends Model
     public static $rules = [
         'packager_id' => 'required',
         'prelot_status_id' => 'required',
-        'requested_quantity' => 'numeric,required',
-        'real_quantity' => 'numeric,required',
+        'requested_quantity' => 'numeric|required',
         'planned_packaging_date' => 'nullable',
         'packaged_date' => 'nullable'
     ];

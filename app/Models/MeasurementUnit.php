@@ -52,7 +52,7 @@ class MeasurementUnit extends Model
 	* @return A string which contains the text to be used in the select
 	**/
 	public function getLabelSelectAttribute() {
-	    return $this->name;
+	    return $this->name . " (" . $this->abreviation . ")";
 	}
 
 	/**
