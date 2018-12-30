@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get("/generateRelationships", "CodeGenerator@generate");
 
 Route::get('/', function () {
     return view('welcome');
