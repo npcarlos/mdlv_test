@@ -11,8 +11,84 @@ use Illuminate\Support\Pluralizer;
 //print_r(get_declared_classes());
 echo "<h1> Agregando relaciones</h1>";
 
-escribirOneToMany();
-escribirManyToOne();
+//escribirOneToMany();
+//escribirManyToOne();
+
+agregarHiddenYAppendsAModelos();
+
+
+    
+
+
+function agregarHiddenYAppendsAModelos()
+{
+    $directorio = "../app/Models/";
+ 
+    $archivos  = scandir($directorio);
+    
+    for($i = 2; $i < sizeof($archivos); $i++)
+    {
+    
+        $archivoActual = $archivos[$i];
+        echo "<br><b>".$archivoActual."</b><br>";
+        
+        $handle = fopen($directorio.$archivoActual, "r");
+        
+        if ($handle) {
+            
+            $contenido = "";
+            
+            $inicioCast = false;
+            $finCast = false;
+            $codigoAgregado = false;
+            
+            while (($line = fgets($handle)) !== false) {
+                // process the line read.
+                
+                $contenido .= $line;
+                if(strcmp(trimLinea($line), trimLinea("protected \$casts = [") ) == 0)
+                {
+                    $inicioCast = true;
+                }
+                if($inicioCast && strcmp(trimLinea($line), trimLinea("];") ) == 0)
+                {
+                    $finCast = true;
+                }
+                
+                if($inicioCast && $finCast  && !$codigoAgregado)
+                {
+               
+                    $contenido .= imprimirLinea("\n");
+                    
+                    $contenido .= imprimirLinea("protected \$hidden = [");
+                    $contenido .= imprimirLinea("    'id',");
+                    $contenido .= imprimirLinea("    'created_at',");
+                    $contenido .= imprimirLinea("    'updated_at',");
+                    $contenido .= imprimirLinea("    'deleted_at'");
+                    $contenido .= imprimirLinea("];");
+                    
+                    $contenido .= imprimirLinea("protected \$appends = [");
+                    $contenido .= imprimirLinea("];");
+                    
+                    $codigoAgregado = true;
+                }
+            }
+
+            fclose($handle);
+    
+            
+            $otro = fopen($directorio.$archivoActual, "w");
+            fwrite($otro, $contenido);
+            fclose($otro);
+            
+        } else {
+            // error opening the file.
+        } 
+    }
+}
+
+
+
 
 /**
 * Modifica los modelos incluyendo las relaciones HasMany
