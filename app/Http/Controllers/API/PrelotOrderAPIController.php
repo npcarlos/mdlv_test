@@ -38,7 +38,7 @@ class PrelotOrderAPIController extends AppBaseController
     {
         $this->prelotOrderRepository->pushCriteria(new RequestCriteria($request));
         $this->prelotOrderRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $prelotOrders = $this->prelotOrderRepository->all();
+        $prelotOrders = $this->prelotOrderRepository->with(['presentation', 'packager', 'prelotStatus', 'presentation.product', 'presentation.product.presentations'])->all();
 
         return $this->sendResponse($prelotOrders->toArray(), 'Prelot Orders retrieved successfully');
     }

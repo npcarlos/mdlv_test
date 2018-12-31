@@ -38,7 +38,7 @@ class ProductAPIController extends AppBaseController
     {
         $this->productRepository->pushCriteria(new RequestCriteria($request));
         $this->productRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $products = $this->productRepository->all();
+        $products = $this->productRepository->with('presentations')->all();
 
         return $this->sendResponse($products->toArray(), 'Products retrieved successfully');
     }
@@ -71,7 +71,7 @@ class ProductAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Product $product */
-        $product = $this->productRepository->findWithoutFail($id);
+        $product = $this->productRepository->with('presentations')->findWithoutFail($id);
 
         if (empty($product)) {
             return $this->sendError('Product not found');
