@@ -48,6 +48,16 @@ class Lot extends Model
         'production_date' => 'date',
         'slug' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

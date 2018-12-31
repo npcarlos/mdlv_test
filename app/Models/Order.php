@@ -63,6 +63,16 @@ class Order extends Model
         'delivery_address_id' => 'integer',
         'comments' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

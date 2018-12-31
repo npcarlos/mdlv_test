@@ -46,6 +46,16 @@ class OrderItem extends Model
         'quantity' => 'integer',
         'discount_id' => 'integer'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

@@ -42,6 +42,16 @@ class SupplyOrder extends Model
         'administrator_id' => 'integer',
         'comments' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

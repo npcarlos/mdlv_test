@@ -47,6 +47,16 @@ class Discount extends Model
         'comments' => 'string',
         'image' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

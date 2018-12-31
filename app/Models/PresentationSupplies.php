@@ -42,6 +42,16 @@ class PresentationSupplies extends Model
         'supply_id' => 'integer',
         'quantity' => 'integer'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

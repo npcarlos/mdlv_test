@@ -45,6 +45,16 @@ class DamagedSupply extends Model
         'quantity' => 'integer',
         'damage_description' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

@@ -56,6 +56,16 @@ class PrelotOrder extends Model
         'real_quantity' => 'integer',
         'comments' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules

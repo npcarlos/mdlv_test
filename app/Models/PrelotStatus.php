@@ -34,6 +34,16 @@ class PrelotStatus extends Model
     protected $casts = [
         'name' => 'string'
     ];
+	protected $hidden = [
+	    'id',
+	    'created_at',
+	    'updated_at',
+	    'deleted_at'
+	];
+	
+
+	protected $appends = [
+	];
 
     /**
      * Validation rules
