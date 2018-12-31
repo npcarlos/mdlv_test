@@ -70,11 +70,13 @@ class Presentation extends Model
 	    'id',
 	    'created_at',
 	    'updated_at',
-	    'deleted_at'
+	    'deleted_at',
+        'product_id'
 	];
 	
 
 	protected $appends = [
+        'measurement'
 	];
 
     /**
