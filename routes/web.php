@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 
+Route::get('generate-pdf','HomeController@generatePDF');
+Route::get('view-pdf','HomeController@viewPDF');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

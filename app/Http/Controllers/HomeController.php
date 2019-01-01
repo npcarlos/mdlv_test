@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,22 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF()
+    {
+        $data = ['title' => 'Welcome to HDTuto.com'];
+        $pdf = PDF::loadView('myPDF', $data);
+        
+        return $pdf->stream('recibo.pdf');
+    }
+    public function viewPDF()
+    {
+        return view('myPDF');
     }
 }
