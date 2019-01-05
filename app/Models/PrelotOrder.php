@@ -49,7 +49,8 @@ class PrelotOrder extends Model
         'real_quantity',
         'planned_packaging_date',
         'packaged_date',
-        'comments'
+        'comments',
+        'administrator_id'
     ];
 
     /**
