@@ -44,7 +44,7 @@
 		}
 		.content
 		{
-			padding-left, : 50px;
+			padding-left: 50px;
 			padding-right: 50px	
 		}
 		.titulo
@@ -69,6 +69,12 @@
 		{
 			width: 350px;
 			padding-top: 20px;
+		}
+		.firma
+		{
+			border: none;
+			border-top: 1px solid #ccc;
+			text-align: left;
 		}
 	</style>
 </head>
@@ -256,8 +262,40 @@
 			<div class="row">
 				<p class="total">
 					Total: $10.0000.000 (m/cte)
-					</p>
-				</div>
+				</p>
+			</div>
+			<div class="row">
+				<table width="100%">
+					<tr>
+						<td class="blanco" style="text-align:left;">
+							Aceptado por:
+						</td>
+						<td class="blanco"></td>
+						<td class="blanco" style="text-align:left;">
+							Entregado por:
+						</td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<table width="100%">	
+					<tr>
+						<td class="firma">
+							Nombre:<br>
+							CC:<br>
+							Fecha:
+						</td>
+						<td class="blanco"></td>
+						<td class="firma">
+							Nombre:<br>
+							CC:<br>
+							Fecha:
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>
