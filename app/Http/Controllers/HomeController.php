@@ -51,14 +51,14 @@ class HomeController extends Controller
         return view('myPDF');
     }
     
-    public function sendNotification()
+    public function sendNotification($title, $message, $token)
     {
         
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 
-        $notificationBuilder = new PayloadNotificationBuilder('Solicitud de inventario');
-        $notificationBuilder->setBody('Empacar: 20 bolitas, 30 grandes, 15 pequeñitas')
+        $notificationBuilder = new PayloadNotificationBuilder($title);
+        $notificationBuilder->setBody($message)
                             ->setSound('default');
 
         $dataBuilder = new PayloadDataBuilder();

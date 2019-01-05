@@ -13,6 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 use App\Models\Presentation;
+use App\Http\Controllers\HomeController;
 
 /**
  * Class PrelotOrderController
@@ -78,9 +79,8 @@ class PrelotOrderAPIController extends AppBaseController
             $prelotOrder = PrelotOrder::create($valores);        
             array_push( $response, $prelotOrder);    
         }
-        //$input['presentation_id'] = Presentation::where('uuid', $input['presentation_id'])->get()->id;
-        //$prelotOrders = $this->prelotOrderRepository->create($input);
-
+        
+        HomeController::sendNotification("Solicitud de inventario", "Se una nueva solicitud de inventario", "");
         
         
         return $this->sendResponse($response, 'Grupo de Prelot Order saved successfully');
