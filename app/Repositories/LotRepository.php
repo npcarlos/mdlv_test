@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class LotRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:32 am UTC
+ * @version January 5, 2019, 3:35 am UTC
  *
  * @method Lot findWithoutFail($id, $columns = ['*'])
  * @method Lot find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class LotRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'presentation_id',
         'packager_id',
         'quantity',

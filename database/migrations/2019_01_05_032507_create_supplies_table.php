@@ -15,6 +15,7 @@ class CreateSuppliesTable extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->integer('supply_category_id')->unsigned();
             $table->string('name');
             $table->string('slug');

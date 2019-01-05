@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePaymentStatusesTable extends Migration
+class CreateUserDevicesTable extends Migration
 {
 
     /**
@@ -13,9 +13,12 @@ class CreatePaymentStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_statuses', function (Blueprint $table) {
+        Schema::create('user_devices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('uuid');
+            $table->string('user');
+            $table->string('token')->nullable();
+            $table->string('device')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +31,6 @@ class CreatePaymentStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('payment_statuses');
+        Schema::drop('user_devices');
     }
 }

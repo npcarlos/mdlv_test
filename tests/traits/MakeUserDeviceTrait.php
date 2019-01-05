@@ -42,6 +42,7 @@ trait MakeUserDeviceTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'user' => $fake->word,
             'token' => $fake->word,
             'device' => $fake->word,

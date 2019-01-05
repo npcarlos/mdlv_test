@@ -4,6 +4,12 @@
     <p>{!! $supplyOrderItem->id !!}</p>
 </div>
 
+<!-- Uuid Field -->
+<div class="form-group">
+    {!! Form::label('uuid', 'Uuid:') !!}
+    <p>{!! $supplyOrderItem->uuid !!}</p>
+</div>
+
 <!-- Supply Order Id Field -->
 <div class="form-group">
     {!! Form::label('supply_order_id', 'Supply Order Id:') !!}

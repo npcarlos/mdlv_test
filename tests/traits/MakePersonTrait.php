@@ -42,6 +42,7 @@ trait MakePersonTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'name' => $fake->word,
             'lastname' => $fake->word,
             'birthday' => $fake->word,

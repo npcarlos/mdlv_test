@@ -42,6 +42,7 @@ trait MakeProductTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'name' => $fake->word,
             'description' => $fake->word,
             'image' => $fake->word,

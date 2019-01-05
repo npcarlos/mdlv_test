@@ -42,6 +42,7 @@ trait MakeDiscountTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'name' => $fake->word,
             'discount_percentage' => $fake->randomDigitNotNull,
             'comments' => $fake->word,

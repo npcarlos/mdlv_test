@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePrelotStatusesTable extends Migration
+class CreateDeliveryStatusesTable extends Migration
 {
 
     /**
@@ -13,8 +13,9 @@ class CreatePrelotStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prelot_statuses', function (Blueprint $table) {
+        Schema::create('delivery_statuses', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
@@ -28,6 +29,6 @@ class CreatePrelotStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('prelot_statuses');
+        Schema::drop('delivery_statuses');
     }
 }

@@ -42,6 +42,7 @@ trait MakeSupplyTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'supply_category_id' => $fake->randomDigitNotNull,
             'name' => $fake->word,
             'slug' => $fake->word,

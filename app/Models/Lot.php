@@ -5,13 +5,19 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class Lot
  * @package App\Models
- * @version December 29, 2018, 12:32 am UTC
+ * @version January 5, 2019, 3:35 am UTC
  *
  * @property \App\Models\Presentation presentation
  * @property \App\Models\Packager packager
+ * @property string uuid
  * @property integer presentation_id
  * @property integer packager_id
  * @property integer quantity
@@ -29,6 +35,7 @@ class Lot extends Model
 
 
     public $fillable = [
+        'uuid',
         'presentation_id',
         'packager_id',
         'quantity',
@@ -42,12 +49,15 @@ class Lot extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'presentation_id' => 'integer',
         'packager_id' => 'integer',
         'quantity' => 'integer',
         'production_date' => 'date',
         'slug' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -58,6 +68,18 @@ class Lot extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

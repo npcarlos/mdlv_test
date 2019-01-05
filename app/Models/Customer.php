@@ -5,12 +5,18 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class Customer
  * @package App\Models
- * @version December 29, 2018, 12:28 am UTC
+ * @version January 5, 2019, 3:16 am UTC
  *
  * @property \App\Models\DocumentType documentType
+ * @property string uuid
  * @property string name
  * @property integer document_type_id
  * @property string document_number
@@ -36,6 +42,7 @@ class Customer extends Model
 
 
     public $fillable = [
+        'uuid',
         'name',
         'document_type_id',
         'document_number',
@@ -57,6 +64,7 @@ class Customer extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'name' => 'string',
         'document_type_id' => 'integer',
         'document_number' => 'string',
@@ -71,6 +79,8 @@ class Customer extends Model
         'slug' => 'string',
         'image' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -81,6 +91,18 @@ class Customer extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

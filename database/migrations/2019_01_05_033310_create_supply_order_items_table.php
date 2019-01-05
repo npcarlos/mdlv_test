@@ -15,6 +15,7 @@ class CreateSupplyOrderItemsTable extends Migration
     {
         Schema::create('supply_order_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->integer('supply_order_id')->unsigned();
             $table->integer('supply_id')->unsigned();
             $table->integer('quantity')->unsigned();

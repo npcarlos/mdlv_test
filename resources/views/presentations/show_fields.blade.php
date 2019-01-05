@@ -4,6 +4,12 @@
     <p>{!! $presentation->id !!}</p>
 </div>
 
+<!-- Uuid Field -->
+<div class="form-group">
+    {!! Form::label('uuid', 'Uuid:') !!}
+    <p>{!! $presentation->uuid !!}</p>
+</div>
+
 <!-- Product Id Field -->
 <div class="form-group">
     {!! Form::label('product_id', 'Product Id:') !!}

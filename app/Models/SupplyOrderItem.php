@@ -5,13 +5,19 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class SupplyOrderItem
  * @package App\Models
- * @version December 29, 2018, 12:31 am UTC
+ * @version January 5, 2019, 3:33 am UTC
  *
  * @property \App\Models\SupplyOrder supplyOrder
  * @property \App\Models\Supply supply
+ * @property string uuid
  * @property integer supply_order_id
  * @property integer supply_id
  * @property integer quantity
@@ -27,6 +33,7 @@ class SupplyOrderItem extends Model
 
 
     public $fillable = [
+        'uuid',
         'supply_order_id',
         'supply_id',
         'quantity'
@@ -38,10 +45,13 @@ class SupplyOrderItem extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'supply_order_id' => 'integer',
         'supply_id' => 'integer',
         'quantity' => 'integer'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -52,6 +62,18 @@ class SupplyOrderItem extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

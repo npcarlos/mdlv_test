@@ -15,6 +15,7 @@ class CreatePresentationSuppliesTable extends Migration
     {
         Schema::create('presentation_supplies', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->integer('presentation_id')->unsigned();
             $table->integer('supply_id')->unsigned();
             $table->integer('quantity')->unsigned()->default(1);

@@ -4,6 +4,12 @@
     <p>{!! $documentType->id !!}</p>
 </div>
 
+<!-- Uuid Field -->
+<div class="form-group">
+    {!! Form::label('uuid', 'Uuid:') !!}
+    <p>{!! $documentType->uuid !!}</p>
+</div>
+
 <!-- Longname Field -->
 <div class="form-group">
     {!! Form::label('longname', 'Longname:') !!}

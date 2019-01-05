@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDeliverersTable extends Migration
+class CreatePrelotStatusesTable extends Migration
 {
 
     /**
@@ -13,12 +13,12 @@ class CreateDeliverersTable extends Migration
      */
     public function up()
     {
-        Schema::create('deliverers', function (Blueprint $table) {
+        Schema::create('prelot_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('person_id')->unsigned();
+            $table->string('uuid');
+            $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateDeliverersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('deliverers');
+        Schema::drop('prelot_statuses');
     }
 }

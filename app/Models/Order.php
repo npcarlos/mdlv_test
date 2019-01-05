@@ -5,10 +5,15 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class Order
  * @package App\Models
- * @version December 29, 2018, 12:35 am UTC
+ * @version January 5, 2019, 3:41 am UTC
  *
  * @property \App\Models\Customer customer
  * @property \App\Models\Seller seller
@@ -16,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \App\Models\DeliveryStatus deliveryStatus
  * @property \App\Models\Deliverer deliverer
  * @property \App\Models\DeliveryAddress deliveryAddress
+ * @property string uuid
  * @property integer customer_id
  * @property integer seller_id
  * @property integer payment_status_id
@@ -37,6 +43,7 @@ class Order extends Model
 
 
     public $fillable = [
+        'uuid',
         'customer_id',
         'seller_id',
         'payment_status_id',
@@ -54,6 +61,7 @@ class Order extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'customer_id' => 'integer',
         'seller_id' => 'integer',
         'payment_status_id' => 'integer',
@@ -63,6 +71,8 @@ class Order extends Model
         'delivery_address_id' => 'integer',
         'comments' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -73,6 +83,18 @@ class Order extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

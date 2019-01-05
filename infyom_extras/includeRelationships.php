@@ -22,6 +22,8 @@ agregarHiddenYAppendsAModelos();
 
 function agregarHiddenYAppendsAModelos()
 {
+    
+    echo "<h1>Agregar Hidden, Appends y UUID</h1>";
     $directorio = "../app/Models/";
  
     $archivos  = scandir($directorio);
@@ -42,10 +44,31 @@ function agregarHiddenYAppendsAModelos()
             $finCast = false;
             $codigoAgregado = false;
             
+            $leyendoUses = false;
+            
             while (($line = fgets($handle)) !== false) {
                 // process the line read.
                 
                 $contenido .= $line;
+                
+                //----------------------------------
+                // Creación de los uses
+                //----------------------------------
+                
+                if(substr( $line, 0, 4 ) === "use ")
+                {
+                    $leyendoUses = true;
+                }
+                else if( $leyendoUses)
+                {
+                    $contenido .= "use Illuminate\Support\Str;\n";
+                   
+                    
+                    $contenido .="\n\n";
+                    $leyendoUses = false;
+                }
+                
+                
                 if(strcmp(trimLinea($line), trimLinea("protected \$casts = [") ) == 0)
                 {
                     $inicioCast = true;
@@ -67,8 +90,24 @@ function agregarHiddenYAppendsAModelos()
                     $contenido .= imprimirLinea("    'deleted_at'");
                     $contenido .= imprimirLinea("];");
                     
+                    $contenido .= imprimirLinea("\n");
+                    
                     $contenido .= imprimirLinea("protected \$appends = [");
                     $contenido .= imprimirLinea("];");
+                    
+                    
+                    $contenido .= imprimirLinea("\n");
+                    
+                    $contenido .= imprimirLinea("public static function boot()");
+                    $contenido .= imprimirLinea("{");
+                    $contenido .= imprimirLinea("    parent::boot();");
+                    $contenido .= imprimirLinea("");
+                    $contenido .= imprimirLinea("    static::saving(function(\$image){");
+                    $contenido .= imprimirLinea("        if(!isset(\$image->attributes['uuid']))  {");
+                    $contenido .= imprimirLinea("            \$image->attributes['uuid'] = Str::uuid();");
+                    $contenido .= imprimirLinea("        }");
+                    $contenido .= imprimirLinea("    });");
+                    $contenido .= imprimirLinea("}");
                     
                     $codigoAgregado = true;
                 }

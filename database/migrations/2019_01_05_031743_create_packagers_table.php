@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateUserDevicesTable extends Migration
+class CreatePackagersTable extends Migration
 {
 
     /**
@@ -13,13 +13,13 @@ class CreateUserDevicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_devices', function (Blueprint $table) {
+        Schema::create('packagers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user');
-            $table->string('token')->nullable();
-            $table->string('device')->nullable();
+            $table->string('uuid');
+            $table->integer('person_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateUserDevicesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_devices');
+        Schema::drop('packagers');
     }
 }

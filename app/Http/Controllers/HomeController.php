@@ -10,6 +10,8 @@ use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 
+use Illuminate\Support\Str;
+
 class HomeController extends Controller
 {
     /**
@@ -84,6 +86,6 @@ class HomeController extends Controller
         $downstreamResponse->tokensToRetry();
 
         // return Array (key:token, value:errror) - in production you should remove from your database the tokens
-        return "Listooo";
+        return "Listooo " . Str::uuid();
     }
 }

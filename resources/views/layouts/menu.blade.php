@@ -10,6 +10,10 @@
         </div><!-- /.box-body -->
       </div><!-- /.box -->
 
+<li class="{{ Request::is('userDevices*') ? 'active' : '' }}">
+    <a href="{!! route('userDevices.index') !!}"><i class="fa fa-edit"></i><span>User Devices</span></a>
+</li>
+
 <li class="{{ Request::is('documentTypes*') ? 'active' : '' }}">
     <a href="{!! route('documentTypes.index') !!}"><i class="fa fa-edit"></i><span>Document Types</span></a>
 </li>
@@ -112,9 +116,5 @@
 
 <li class="{{ Request::is('orderItems*') ? 'active' : '' }}">
     <a href="{!! route('orderItems.index') !!}"><i class="fa fa-edit"></i><span>Order Items</span></a>
-</li>
-
-<li class="{{ Request::is('userDevices*') ? 'active' : '' }}">
-    <a href="{!! route('userDevices.index') !!}"><i class="fa fa-edit"></i><span>User Devices</span></a>
 </li>
 

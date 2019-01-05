@@ -42,6 +42,7 @@ trait MakePrelotOrderTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'presentation_id' => $fake->randomDigitNotNull,
             'packager_id' => $fake->randomDigitNotNull,
             'prelot_status_id' => $fake->randomDigitNotNull,
@@ -50,6 +51,7 @@ trait MakePrelotOrderTrait
             'planned_packaging_date' => $fake->date('Y-m-d H:i:s'),
             'packaged_date' => $fake->date('Y-m-d H:i:s'),
             'comments' => $fake->text,
+            'administrator_id' => $fake->randomDigitNotNull,
             'created_at' => $fake->word,
             'updated_at' => $fake->word
         ], $prelotOrderFields);

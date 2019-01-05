@@ -42,6 +42,7 @@ trait MakePresentationSuppliesTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'presentation_id' => $fake->randomDigitNotNull,
             'supply_id' => $fake->randomDigitNotNull,
             'quantity' => $fake->randomDigitNotNull,

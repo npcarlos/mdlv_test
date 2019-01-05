@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class UserDeviceRepository
  * @package App\Repositories
- * @version January 4, 2019, 10:31 pm UTC
+ * @version January 5, 2019, 3:09 am UTC
  *
  * @method UserDevice findWithoutFail($id, $columns = ['*'])
  * @method UserDevice find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class UserDeviceRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'user',
         'token',
         'device'

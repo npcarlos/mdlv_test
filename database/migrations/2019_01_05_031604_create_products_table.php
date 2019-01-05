@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDocumentTypesTable extends Migration
+class CreateProductsTable extends Migration
 {
 
     /**
@@ -13,10 +13,13 @@ class CreateDocumentTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('document_types', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('longname');
+            $table->string('uuid');
             $table->string('name')->unique();
+            $table->string('description');
+            $table->string('image');
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +32,6 @@ class CreateDocumentTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('document_types');
+        Schema::drop('products');
     }
 }

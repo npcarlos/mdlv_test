@@ -5,12 +5,18 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class Deliverer
  * @package App\Models
- * @version December 29, 2018, 12:30 am UTC
+ * @version January 5, 2019, 3:24 am UTC
  *
  * @property \App\Models\Person person
+ * @property string uuid
  * @property integer person_id
  */
 class Deliverer extends Model
@@ -24,6 +30,7 @@ class Deliverer extends Model
 
 
     public $fillable = [
+        'uuid',
         'person_id'
     ];
 
@@ -33,8 +40,11 @@ class Deliverer extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'person_id' => 'integer'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -45,6 +55,18 @@ class Deliverer extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

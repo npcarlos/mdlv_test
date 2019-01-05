@@ -15,6 +15,7 @@ class CreateDamagedSuppliesTable extends Migration
     {
         Schema::create('damaged_supplies', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->integer('supply_id')->unsigned();
             $table->integer('prelot_order_id')->unsigned();
             $table->integer('quantity')->unsigned()->default(1);

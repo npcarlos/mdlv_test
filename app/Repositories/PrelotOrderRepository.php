@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class PrelotOrderRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:33 am UTC
+ * @version January 5, 2019, 3:36 am UTC
  *
  * @method PrelotOrder findWithoutFail($id, $columns = ['*'])
  * @method PrelotOrder find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class PrelotOrderRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'presentation_id',
         'packager_id',
         'prelot_status_id',
@@ -27,7 +28,8 @@ class PrelotOrderRepository extends BaseRepository
         'real_quantity',
         'planned_packaging_date',
         'packaged_date',
-        'comments'
+        'comments',
+        'administrator_id'
     ];
 
     /**

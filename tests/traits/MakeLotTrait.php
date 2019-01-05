@@ -42,6 +42,7 @@ trait MakeLotTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'presentation_id' => $fake->randomDigitNotNull,
             'packager_id' => $fake->randomDigitNotNull,
             'quantity' => $fake->randomDigitNotNull,

@@ -5,12 +5,18 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class DeliveryAddress
  * @package App\Models
- * @version December 29, 2018, 12:34 am UTC
+ * @version January 5, 2019, 3:40 am UTC
  *
  * @property \App\Models\Customer customer
+ * @property string uuid
  * @property integer customer_id
  * @property string address
  * @property double latitude
@@ -27,6 +33,7 @@ class DeliveryAddress extends Model
 
 
     public $fillable = [
+        'uuid',
         'customer_id',
         'address',
         'latitude',
@@ -39,11 +46,14 @@ class DeliveryAddress extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'customer_id' => 'integer',
         'address' => 'string',
         'latitude' => 'double',
         'longitude' => 'double'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -54,6 +64,18 @@ class DeliveryAddress extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

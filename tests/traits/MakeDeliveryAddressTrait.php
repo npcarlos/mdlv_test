@@ -42,6 +42,7 @@ trait MakeDeliveryAddressTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'customer_id' => $fake->randomDigitNotNull,
             'address' => $fake->word,
             'latitude' => $fake->word,

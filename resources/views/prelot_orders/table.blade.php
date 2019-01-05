@@ -9,6 +9,7 @@
         <th>Planned Packaging Date</th>
         <th>Packaged Date</th>
         <th>Comments</th>
+        <th>Administrator Id</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -23,6 +24,7 @@
             <td>{!! $prelotOrder->planned_packaging_date !!}</td>
             <td>{!! $prelotOrder->packaged_date !!}</td>
             <td>{!! $prelotOrder->comments !!}</td>
+            <td>{!! $prelotOrder->administrator_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['prelotOrders.destroy', $prelotOrder->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

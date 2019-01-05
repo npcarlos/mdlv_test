@@ -42,6 +42,7 @@ trait MakeProviderTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'name' => $fake->word,
             'document_type_id' => $fake->randomDigitNotNull,
             'document_number' => $fake->word,

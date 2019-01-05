@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class SellerRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:29 am UTC
+ * @version January 5, 2019, 3:19 am UTC
  *
  * @method Seller findWithoutFail($id, $columns = ['*'])
  * @method Seller find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class SellerRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'person_id'
     ];
 

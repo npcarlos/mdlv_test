@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class AdministratorRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:30 am UTC
+ * @version January 5, 2019, 3:23 am UTC
  *
  * @method Administrator findWithoutFail($id, $columns = ['*'])
  * @method Administrator find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class AdministratorRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'person_id'
     ];
 

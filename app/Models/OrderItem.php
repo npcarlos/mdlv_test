@@ -5,14 +5,20 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class OrderItem
  * @package App\Models
- * @version December 29, 2018, 12:35 am UTC
+ * @version January 5, 2019, 3:41 am UTC
  *
  * @property \App\Models\Order order
  * @property \App\Models\Presentation presentation
  * @property \App\Models\Discount discount
+ * @property string uuid
  * @property integer order_id
  * @property integer presentation_id
  * @property integer quantity
@@ -29,6 +35,7 @@ class OrderItem extends Model
 
 
     public $fillable = [
+        'uuid',
         'order_id',
         'presentation_id',
         'quantity',
@@ -41,11 +48,14 @@ class OrderItem extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'order_id' => 'integer',
         'presentation_id' => 'integer',
         'quantity' => 'integer',
         'discount_id' => 'integer'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -56,6 +66,18 @@ class OrderItem extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

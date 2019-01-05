@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDeliveryStatusesTable extends Migration
+class CreateSellersTable extends Migration
 {
 
     /**
@@ -13,11 +13,13 @@ class CreateDeliveryStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_statuses', function (Blueprint $table) {
+        Schema::create('sellers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('uuid');
+            $table->integer('person_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateDeliveryStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('delivery_statuses');
+        Schema::drop('sellers');
     }
 }

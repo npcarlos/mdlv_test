@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMeasurementUnitsTable extends Migration
+class CreateDiscountsTable extends Migration
 {
 
     /**
@@ -13,10 +13,15 @@ class CreateMeasurementUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('measurement_units', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->string('name');
-            $table->string('abreviation')->unique();
+            $table->integer('discount_percentage');
+            $table->string('comments')->nullable();
+            $table->datetime('initial_date')->nullable();
+            $table->datetime('final_date')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +34,6 @@ class CreateMeasurementUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('measurement_units');
+        Schema::drop('discounts');
     }
 }

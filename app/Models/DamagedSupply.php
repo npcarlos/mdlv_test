@@ -5,13 +5,19 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class DamagedSupply
  * @package App\Models
- * @version December 29, 2018, 12:34 am UTC
+ * @version January 5, 2019, 3:40 am UTC
  *
  * @property \App\Models\Supply supply
  * @property \App\Models\PrelotOrder prelotOrder
+ * @property string uuid
  * @property integer supply_id
  * @property integer prelot_order_id
  * @property integer quantity
@@ -28,6 +34,7 @@ class DamagedSupply extends Model
 
 
     public $fillable = [
+        'uuid',
         'supply_id',
         'prelot_order_id',
         'quantity',
@@ -40,11 +47,14 @@ class DamagedSupply extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'supply_id' => 'integer',
         'prelot_order_id' => 'integer',
         'quantity' => 'integer',
         'damage_description' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -55,6 +65,18 @@ class DamagedSupply extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

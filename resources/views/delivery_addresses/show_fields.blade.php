@@ -4,6 +4,12 @@
     <p>{!! $deliveryAddress->id !!}</p>
 </div>
 
+<!-- Uuid Field -->
+<div class="form-group">
+    {!! Form::label('uuid', 'Uuid:') !!}
+    <p>{!! $deliveryAddress->uuid !!}</p>
+</div>
+
 <!-- Customer Id Field -->
 <div class="form-group">
     {!! Form::label('customer_id', 'Customer Id:') !!}

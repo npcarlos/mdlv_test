@@ -5,14 +5,20 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class Supply
  * @package App\Models
- * @version December 29, 2018, 12:30 am UTC
+ * @version January 5, 2019, 3:25 am UTC
  *
  * @property \App\Models\SupplyCategory supplyCategory
  * @property \App\Models\Provider provider
  * @property \App\Models\MeasurementUnit measurementUnit
+ * @property string uuid
  * @property integer supply_category_id
  * @property string name
  * @property string slug
@@ -37,6 +43,7 @@ class Supply extends Model
 
 
     public $fillable = [
+        'uuid',
         'supply_category_id',
         'name',
         'slug',
@@ -57,6 +64,7 @@ class Supply extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'supply_category_id' => 'integer',
         'name' => 'string',
         'slug' => 'string',
@@ -70,6 +78,8 @@ class Supply extends Model
         'iva' => 'double',
         'image' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -80,6 +90,18 @@ class Supply extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

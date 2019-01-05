@@ -5,11 +5,17 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class MeasurementUnit
  * @package App\Models
- * @version December 29, 2018, 12:24 am UTC
+ * @version January 5, 2019, 3:13 am UTC
  *
+ * @property string uuid
  * @property string name
  * @property string abreviation
  */
@@ -24,6 +30,7 @@ class MeasurementUnit extends Model
 
 
     public $fillable = [
+        'uuid',
         'name',
         'abreviation'
     ];
@@ -34,9 +41,12 @@ class MeasurementUnit extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'name' => 'string',
         'abreviation' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -47,6 +57,18 @@ class MeasurementUnit extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

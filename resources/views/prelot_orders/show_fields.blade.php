@@ -4,6 +4,12 @@
     <p>{!! $prelotOrder->id !!}</p>
 </div>
 
+<!-- Uuid Field -->
+<div class="form-group">
+    {!! Form::label('uuid', 'Uuid:') !!}
+    <p>{!! $prelotOrder->uuid !!}</p>
+</div>
+
 <!-- Presentation Id Field -->
 <div class="form-group">
     {!! Form::label('presentation_id', 'Presentation Id:') !!}
@@ -50,6 +56,12 @@
 <div class="form-group">
     {!! Form::label('comments', 'Comments:') !!}
     <p>{!! $prelotOrder->comments !!}</p>
+</div>
+
+<!-- Administrator Id Field -->
+<div class="form-group">
+    {!! Form::label('administrator_id', 'Administrator Id:') !!}
+    <p>{!! $prelotOrder->administrator_id !!}</p>
 </div>
 
 <!-- Created At Field -->

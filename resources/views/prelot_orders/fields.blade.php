@@ -46,6 +46,12 @@
     {!! Form::textarea('comments', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Administrator Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('administrator_id', 'Administrator Id:') !!}
+		{!! Form::select('administrator_id', $administrators, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

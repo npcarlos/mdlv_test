@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class DiscountRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:26 am UTC
+ * @version January 5, 2019, 3:15 am UTC
  *
  * @method Discount findWithoutFail($id, $columns = ['*'])
  * @method Discount find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class DiscountRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'name',
         'discount_percentage',
         'comments',

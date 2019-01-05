@@ -4,6 +4,12 @@
     <p>{!! $userDevice->id !!}</p>
 </div>
 
+<!-- Uuid Field -->
+<div class="form-group">
+    {!! Form::label('uuid', 'Uuid:') !!}
+    <p>{!! $userDevice->uuid !!}</p>
+</div>
+
 <!-- User Field -->
 <div class="form-group">
     {!! Form::label('user', 'User:') !!}

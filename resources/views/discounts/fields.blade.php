@@ -16,6 +16,18 @@
     {!! Form::textarea('comments', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Initial Date Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('initial_date', 'Initial Date:') !!}
+    {!! Form::date('initial_date', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Final Date Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('final_date', 'Final Date:') !!}
+    {!! Form::date('final_date', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Image Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('image', 'Image:') !!}

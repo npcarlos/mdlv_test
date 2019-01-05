@@ -42,6 +42,7 @@ trait MakeMeasurementUnitTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'name' => $fake->word,
             'abreviation' => $fake->word,
             'created_at' => $fake->word,

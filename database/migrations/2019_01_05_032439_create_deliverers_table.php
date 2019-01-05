@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSupplyCategoriesTable extends Migration
+class CreateDeliverersTable extends Migration
 {
 
     /**
@@ -13,11 +13,13 @@ class CreateSupplyCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('supply_categories', function (Blueprint $table) {
+        Schema::create('deliverers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('uuid');
+            $table->integer('person_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateSupplyCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('supply_categories');
+        Schema::drop('deliverers');
     }
 }

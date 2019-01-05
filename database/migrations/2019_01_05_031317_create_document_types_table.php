@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePackagersTable extends Migration
+class CreateDocumentTypesTable extends Migration
 {
 
     /**
@@ -13,12 +13,13 @@ class CreatePackagersTable extends Migration
      */
     public function up()
     {
-        Schema::create('packagers', function (Blueprint $table) {
+        Schema::create('document_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('person_id')->unsigned();
+            $table->string('uuid');
+            $table->string('longname');
+            $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
@@ -29,6 +30,6 @@ class CreatePackagersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('packagers');
+        Schema::drop('document_types');
     }
 }

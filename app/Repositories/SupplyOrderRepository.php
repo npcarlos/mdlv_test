@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class SupplyOrderRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:31 am UTC
+ * @version January 5, 2019, 3:28 am UTC
  *
  * @method SupplyOrder findWithoutFail($id, $columns = ['*'])
  * @method SupplyOrder find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class SupplyOrderRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'provider_id',
         'administrator_id',
         'comments'

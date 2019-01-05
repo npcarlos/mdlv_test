@@ -42,6 +42,7 @@ trait MakeOrderItemTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'order_id' => $fake->randomDigitNotNull,
             'presentation_id' => $fake->randomDigitNotNull,
             'quantity' => $fake->randomDigitNotNull,

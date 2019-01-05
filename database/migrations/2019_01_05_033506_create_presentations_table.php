@@ -15,6 +15,7 @@ class CreatePresentationsTable extends Migration
     {
         Schema::create('presentations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid');
             $table->integer('product_id')->unsigned();
             $table->string('slug');
             $table->string('short_name');

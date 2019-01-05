@@ -5,14 +5,21 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class PrelotOrder
  * @package App\Models
- * @version December 29, 2018, 12:33 am UTC
+ * @version January 5, 2019, 3:36 am UTC
  *
  * @property \App\Models\Presentation presentation
  * @property \App\Models\Packager packager
  * @property \App\Models\PrelotStatus prelotStatus
+ * @property \App\Models\Administrator administrator
+ * @property string uuid
  * @property integer presentation_id
  * @property integer packager_id
  * @property integer prelot_status_id
@@ -21,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|\Carbon\Carbon planned_packaging_date
  * @property string|\Carbon\Carbon packaged_date
  * @property string comments
+ * @property integer administrator_id
  */
 class PrelotOrder extends Model
 {
@@ -33,6 +41,7 @@ class PrelotOrder extends Model
 
 
     public $fillable = [
+        'uuid',
         'presentation_id',
         'packager_id',
         'prelot_status_id',
@@ -49,13 +58,17 @@ class PrelotOrder extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'presentation_id' => 'integer',
         'packager_id' => 'integer',
         'prelot_status_id' => 'integer',
         'requested_quantity' => 'integer',
         'real_quantity' => 'integer',
-        'comments' => 'string'
+        'comments' => 'string',
+        'administrator_id' => 'integer'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -66,6 +79,18 @@ class PrelotOrder extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules
@@ -73,11 +98,13 @@ class PrelotOrder extends Model
      * @var array
      */
     public static $rules = [
-        'packager_id' => 'required',
+        'packager_id' => 'nullable',
         'prelot_status_id' => 'required',
         'requested_quantity' => 'numeric|required',
+        'real_quantity' => 'numeric',
         'planned_packaging_date' => 'nullable',
-        'packaged_date' => 'nullable'
+        'packaged_date' => 'nullable',
+        'administrator_id' => 'required'
     ];
 
 	/**
@@ -118,5 +145,13 @@ class PrelotOrder extends Model
     public function prelotStatus()
     {
         return $this->belongsTo(\App\Models\PrelotStatus::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function administrator()
+    {
+        return $this->belongsTo(\App\Models\Administrator::class);
     }
 }

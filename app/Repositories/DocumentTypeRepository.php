@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class DocumentTypeRepository
  * @package App\Repositories
- * @version December 29, 2018, 12:24 am UTC
+ * @version January 5, 2019, 3:13 am UTC
  *
  * @method DocumentType findWithoutFail($id, $columns = ['*'])
  * @method DocumentType find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class DocumentTypeRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'uuid',
         'longname',
         'name'
     ];

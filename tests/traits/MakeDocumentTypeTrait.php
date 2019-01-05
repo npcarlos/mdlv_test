@@ -42,6 +42,7 @@ trait MakeDocumentTypeTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'longname' => $fake->word,
             'name' => $fake->word,
             'created_at' => $fake->word,

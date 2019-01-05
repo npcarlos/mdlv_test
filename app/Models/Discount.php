@@ -5,11 +5,17 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Str;
+
+
+
+
 /**
  * Class Discount
  * @package App\Models
- * @version December 29, 2018, 12:26 am UTC
+ * @version January 5, 2019, 3:15 am UTC
  *
+ * @property string uuid
  * @property string name
  * @property integer discount_percentage
  * @property string comments
@@ -28,6 +34,7 @@ class Discount extends Model
 
 
     public $fillable = [
+        'uuid',
         'name',
         'discount_percentage',
         'comments',
@@ -42,11 +49,14 @@ class Discount extends Model
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'name' => 'string',
         'discount_percentage' => 'integer',
         'comments' => 'string',
         'image' => 'string'
     ];
+	
+
 	protected $hidden = [
 	    'id',
 	    'created_at',
@@ -57,6 +67,18 @@ class Discount extends Model
 
 	protected $appends = [
 	];
+	
+
+	public static function boot()
+	{
+	    parent::boot();
+	
+	    static::saving(function($image){
+	        if(!isset($image->attributes['uuid']))  {
+	            $image->attributes['uuid'] = Str::uuid();
+	        }
+	    });
+	}
 
     /**
      * Validation rules

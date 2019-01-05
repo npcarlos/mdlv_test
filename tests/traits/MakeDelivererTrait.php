@@ -42,6 +42,7 @@ trait MakeDelivererTrait
         $fake = Faker::create();
 
         return array_merge([
+            'uuid' => $fake->word,
             'person_id' => $fake->randomDigitNotNull,
             'created_at' => $fake->word,
             'updated_at' => $fake->word
