@@ -90,6 +90,9 @@ class PrelotOrder extends Model
 	        if(!isset($image->attributes['uuid']))  {
 	            $image->attributes['uuid'] = Str::uuid();
 	        }
+            $image->attributes['prelot_status_id'] = 1;
+            $image->attributes['real_quantity'] = 0;
+            $image->attributes['packager_id'] = 1;
 	    });
 	}
 

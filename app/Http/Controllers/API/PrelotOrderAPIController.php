@@ -12,6 +12,8 @@ use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\Presentation;
+
 /**
  * Class PrelotOrderController
  * @package App\Http\Controllers\API
@@ -55,10 +57,35 @@ class PrelotOrderAPIController extends AppBaseController
     {
         $input = $request->all();
 
+        $input['presentation_id'] = Presentation::where('uuid', $input['presentation_id'])->get()->id;
         $prelotOrders = $this->prelotOrderRepository->create($input);
 
         return $this->sendResponse($prelotOrders->toArray(), 'Prelot Order saved successfully');
     }
+    
+    public function storeGroup(Request $request)
+    {
+        $input = $request->all();
+
+        $response = array();
+        foreach ($input as $value) {
+            $valores = [
+                'requested_quantity'=>$value['cantidad'],
+                'administrator_id' => 1,
+                'presentation_id' => Presentation::where('uuid', $value['presentation'])->get()->makeVisible('id')[0]['id']
+            ];
+            
+            $prelotOrder = PrelotOrder::create($valores);        
+            array_push( $response, $prelotOrder);    
+        }
+        //$input['presentation_id'] = Presentation::where('uuid', $input['presentation_id'])->get()->id;
+        //$prelotOrders = $this->prelotOrderRepository->create($input);
+
+        
+        
+        return $this->sendResponse($response, 'Grupo de Prelot Order saved successfully');
+    }
+
 
     /**
      * Display the specified PrelotOrder.

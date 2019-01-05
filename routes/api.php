@@ -60,6 +60,7 @@ Route::resource('presentations', 'PresentationAPIController');
 
 Route::resource('lots', 'LotAPIController');
 
+Route::post('prelot_orders/group', 'PrelotOrderAPIController@storeGroup');
 Route::resource('prelot_orders', 'PrelotOrderAPIController');
 
 Route::resource('presentation_supplies', 'PresentationSuppliesAPIController');
