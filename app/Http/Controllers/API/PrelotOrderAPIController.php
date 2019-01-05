@@ -80,7 +80,7 @@ class PrelotOrderAPIController extends AppBaseController
             array_push( $response, $prelotOrder);    
         }
         
-        //HomeController::sendNotification("Solicitud de inventario", "Se una nueva solicitud de inventario", "");
+        $this->sendNotification("Solicitud de inventario", "Se una nueva solicitud de inventario :)", "");
         
         
         return $this->sendResponse($response, 'Grupo de Prelot Order saved successfully');

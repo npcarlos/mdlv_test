@@ -51,7 +51,7 @@ class HomeController extends Controller
         return view('myPDF');
     }
     
-    public function sendNotification($title = 'Título', $message = 'Mensaje', $token)
+    public function sendNotification($title = 'Título', $message = 'Mensaje', $token = "cbbUs2EP7cU:APA91bHWE7gWVDOssSPqu-NhmdtPBm_0TWsnhJ6kTLh-0zkn-C_IM8ccEYJcZXDVjjIluXBs2m_H6rcppqkRnb8cadqrjxI-tBksZDaD_bueeEYDVkdpHcYpuXUeYA7K6bqtKOs_Qkxz")
     {
         
         $optionBuilder = new OptionsBuilder();
@@ -68,7 +68,7 @@ class HomeController extends Controller
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
 
-        $token = "dNdStgq5_F8:APA91bG-wzjVpuaqJc6sa5StucAeh1zKSWm7kqmjFTs7pTEJ8CKGKtgwOMNNj43TnMhr0oC8D8lyVLlZ2ejACO3WNFwL9faUp6-J4m1c3JibcGKrBMcTAYYD6PbTKn2rM0NBJEILmoqd";
+        $token = "cbbUs2EP7cU:APA91bHWE7gWVDOssSPqu-NhmdtPBm_0TWsnhJ6kTLh-0zkn-C_IM8ccEYJcZXDVjjIluXBs2m_H6rcppqkRnb8cadqrjxI-tBksZDaD_bueeEYDVkdpHcYpuXUeYA7K6bqtKOs_Qkxz";
 
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
