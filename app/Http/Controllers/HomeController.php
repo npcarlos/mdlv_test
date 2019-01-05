@@ -51,7 +51,7 @@ class HomeController extends Controller
         return view('myPDF');
     }
     
-    public function sendNotification($title, $message, $token)
+    public function sendNotification($title = 'Título', $message = 'Mensaje', $token)
     {
         
         $optionBuilder = new OptionsBuilder();
