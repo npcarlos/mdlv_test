@@ -495,3 +495,5 @@ Route::resource('delivery_addresses', 'DeliveryAddressAPIController');
 Route::resource('orders', 'OrderAPIController');
 
 Route::resource('order_items', 'OrderItemAPIController');
+
+Route::resource('user_devices', 'UserDeviceAPIController');

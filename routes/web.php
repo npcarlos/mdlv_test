@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('not', 'HomeController@sendNotification');
 
 Route::get('generate-pdf','HomeController@generatePDF');
 Route::get('view-pdf','HomeController@viewPDF');
@@ -504,3 +505,5 @@ Route::resource('deliveryAddresses', 'DeliveryAddressController');
 Route::resource('orders', 'OrderController');
 
 Route::resource('orderItems', 'OrderItemController');
+
+Route::resource('userDevices', 'UserDeviceController');

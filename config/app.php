@@ -185,6 +185,8 @@ return [
         // PDF
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        // PushNotifications FCM
+        LaravelFCM\FCMServiceProvider::class,
     ],
 
     /*
@@ -242,6 +244,10 @@ return [
 
         // PDF
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        
+        // Push Notifications FCM
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+	    'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, 
     ],
 
 ];

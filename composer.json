@@ -12,6 +12,7 @@
         "appointer/swaggervel": "dev-master",
         "barryvdh/laravel-cors": "^0.11.2",
         "barryvdh/laravel-dompdf": "^0.8.3",
+        "brozot/laravel-fcm": "^1.2",
         "fideloper/proxy": "^4.0",
         "infyomlabs/adminlte-templates": "5.7.x-dev",
         "infyomlabs/laravel-generator": "5.7.x-dev",

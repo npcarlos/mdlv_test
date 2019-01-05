@@ -114,3 +114,7 @@
     <a href="{!! route('orderItems.index') !!}"><i class="fa fa-edit"></i><span>Order Items</span></a>
 </li>
 
+<li class="{{ Request::is('userDevices*') ? 'active' : '' }}">
+    <a href="{!! route('userDevices.index') !!}"><i class="fa fa-edit"></i><span>User Devices</span></a>
+</li>
+
