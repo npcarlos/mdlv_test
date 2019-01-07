@@ -69,6 +69,7 @@ Route::resource('damaged_supplies', 'DamagedSupplyAPIController');
 
 Route::resource('delivery_addresses', 'DeliveryAddressAPIController');
 
+Route::get('orders/{uuid}/generatePDF', 'OrderAPIController@generatePDF');
 Route::resource('orders', 'OrderAPIController');
 
 Route::resource('order_items', 'OrderItemAPIController');

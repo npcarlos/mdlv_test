@@ -60,7 +60,10 @@ class OrderItem extends Model
 	    'id',
 	    'created_at',
 	    'updated_at',
-	    'deleted_at'
+	    'deleted_at',
+        'order_id',
+        'presentation_id',
+        'discount_id'
 	];
 	
 

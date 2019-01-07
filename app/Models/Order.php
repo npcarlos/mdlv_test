@@ -77,17 +77,28 @@ class Order extends Model
 	    'id',
 	    'created_at',
 	    'updated_at',
-	    'deleted_at'
+	    'deleted_at',
+        'customer_id',
+        'seller_id',
+        'payment_status_id',
+        'delivery_status_id',
+        'deliverer_id'
 	];
 	
 
 	protected $appends = [
+        
 	];
 	
 
 	public static function findByUUID($uuid)
 	{
 	    return Order::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+	public static function findByUUIDWith($uuid, $with)
+	{
+	    return Order::where('uuid', $uuid)->with($with)->first();
 	}
 	
 
@@ -108,10 +119,10 @@ class Order extends Model
      * @var array
      */
     public static $rules = [
-        'customer_id' => 'required',
-        'seller_id' => 'required',
-        'payment_status_id' => 'required',
-        'delivery_status_id' => 'required',
+        //'customer_id' => 'required',
+        //'seller_id' => 'required',
+        //'payment_status_id' => 'required',
+        //'delivery_status_id' => 'required',
         'planned_delivery_date' => 'nullable',
         'delivery_date' => 'nullable',
         'comments' => 'nullable'
