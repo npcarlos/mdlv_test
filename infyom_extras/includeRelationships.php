@@ -32,7 +32,8 @@ function agregarHiddenYAppendsAModelos()
     {
     
         $archivoActual = $archivos[$i];
-        echo "<br><b>".$archivoActual."</b><br>";
+        $modelo = explode(".", $archivoActual)[0];
+        echo "<br><b>".$modelo."</b><br>";
         
         $handle = fopen($directorio.$archivoActual, "r");
         
@@ -59,7 +60,7 @@ function agregarHiddenYAppendsAModelos()
                 {
                     $leyendoUses = true;
                 }
-                else if( $leyendoUses)
+                else if($leyendoUses)
                 {
                     $contenido .= "use Illuminate\Support\Str;\n";
                    
@@ -69,7 +70,7 @@ function agregarHiddenYAppendsAModelos()
                 }
                 
                 
-                if(strcmp(trimLinea($line), trimLinea("protected \$casts = [") ) == 0)
+                if(strcmp(trimLinea($line), trimLinea("protected \$appends = [") ) == 0)
                 {
                     $inicioCast = true;
                 }
@@ -80,7 +81,7 @@ function agregarHiddenYAppendsAModelos()
                 
                 if($inicioCast && $finCast  && !$codigoAgregado)
                 {
-               
+                    
                     $contenido .= imprimirLinea("\n");
                     
                     $contenido .= imprimirLinea("protected \$hidden = [");
@@ -108,6 +109,16 @@ function agregarHiddenYAppendsAModelos()
                     $contenido .= imprimirLinea("        }");
                     $contenido .= imprimirLinea("    });");
                     $contenido .= imprimirLinea("}");
+                    
+                    
+                    $contenido .= imprimirLinea("\n");
+                    
+                    $contenido .= imprimirLinea("public static function findByUUID(\$uuid)");
+                    $contenido .= imprimirLinea("{");
+                    $contenido .= imprimirLinea("    return $modelo::where('uuid', \$uuid)->first()->makeVisible('id');");
+                    $contenido .= imprimirLinea("}");
+                    //$contenido .= imprimirLinea("");
+
                     
                     $codigoAgregado = true;
                 }
