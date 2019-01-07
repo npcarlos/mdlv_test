@@ -96,6 +96,12 @@ class Person extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return Person::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

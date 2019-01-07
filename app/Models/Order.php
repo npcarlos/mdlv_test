@@ -85,6 +85,12 @@ class Order extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return Order::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

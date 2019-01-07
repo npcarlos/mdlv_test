@@ -67,6 +67,12 @@ class DamagedSupply extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return DamagedSupply::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

@@ -56,6 +56,12 @@ class PaymentStatus extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return PaymentStatus::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

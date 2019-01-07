@@ -59,6 +59,12 @@ class MeasurementUnit extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return MeasurementUnit::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

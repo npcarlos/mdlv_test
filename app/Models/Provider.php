@@ -93,6 +93,12 @@ class Provider extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return Provider::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

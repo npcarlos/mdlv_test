@@ -57,6 +57,12 @@ class Deliverer extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return Deliverer::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

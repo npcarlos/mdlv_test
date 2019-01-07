@@ -64,6 +64,12 @@ class SupplyOrder extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return SupplyOrder::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

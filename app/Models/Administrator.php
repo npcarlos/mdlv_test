@@ -57,6 +57,12 @@ class Administrator extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return Administrator::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

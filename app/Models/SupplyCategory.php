@@ -56,6 +56,12 @@ class SupplyCategory extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return SupplyCategory::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

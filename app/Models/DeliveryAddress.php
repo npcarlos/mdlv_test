@@ -66,6 +66,12 @@ class DeliveryAddress extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return DeliveryAddress::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

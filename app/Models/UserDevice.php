@@ -62,6 +62,12 @@ class UserDevice extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return UserDevice::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();

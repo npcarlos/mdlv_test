@@ -92,6 +92,12 @@ class Supply extends Model
 	];
 	
 
+	public static function findByUUID($uuid)
+	{
+	    return Supply::where('uuid', $uuid)->first()->makeVisible('id');
+	}
+	
+
 	public static function boot()
 	{
 	    parent::boot();
